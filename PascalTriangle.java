@@ -46,9 +46,11 @@ public class PascalTriangle extends	RecursiveTask<Long>{
 		// TODO Auto-generated method stub
 		
 		long startTime = System.currentTimeMillis();
-		
+
 		ForkJoinPool	pool	=	new	ForkJoinPool(3);	
-		PascalTriangle	task	=	new	PascalTriangle(80,6);	
+		PascalTriangle	task	=	new	PascalTriangle(100,6);
+		
+
 		
 		long result	=	pool.invoke(task);	
 		
@@ -58,7 +60,9 @@ public class PascalTriangle extends	RecursiveTask<Long>{
 		long totalTime = endTime - startTime;
 		System.out.println(totalTime/1000 + "s");
 	}
-
+	
+	//58s 30s 27s (100,6)
 	//27s 17s 14s
+	//13s 8s 7s (80,6)
 
 }
