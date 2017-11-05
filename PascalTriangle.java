@@ -35,8 +35,8 @@ public class PascalTriangle extends	RecursiveTask<Long>{
 		if (n == 0 || k == 0 || n == k) {
 		return (long) 1;
 		}
-		PascalTriangle left = new PascalTriangle(n - 1, k - 1);
-		PascalTriangle right = new  PascalTriangle(n - 1, k);
+		PascalTriangle left = PascalTriangle.getInstance(n - 1, k - 1);
+		PascalTriangle right = PascalTriangle.getInstance(n - 1, k);
 		left.fork();	
 		return	right.compute()	+	left.join();	
 		}
@@ -48,7 +48,7 @@ public class PascalTriangle extends	RecursiveTask<Long>{
 		long startTime = System.currentTimeMillis();
 
 		ForkJoinPool	pool	=	new	ForkJoinPool(3);	
-		PascalTriangle	task	=	new	PascalTriangle(100,6);
+		PascalTriangle	task	=	new	PascalTriangle(100,50);
 		
 
 		
@@ -58,11 +58,9 @@ public class PascalTriangle extends	RecursiveTask<Long>{
 		
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println(totalTime/1000 + "s");
+		System.out.println(totalTime + "ms");
 	}
 	
-	//58s 30s 27s (100,6)
-	//27s 17s 14s
-	//13s 8s 7s (80,6)
+	
 
 }
